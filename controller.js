@@ -43,12 +43,12 @@ exports.getData = catchAsync(async (req, res, next) => {
   // );
   const response = await weather.json();
   console.log('response', response.current.temp_c);
-  const temp = response?.current?.temp_c;
-  if (temp !== undefined) {
-    console.log(`The temperature is ${temp}°C`);
-  } else {
-    console.error('Temperature data is unavailable.');
-  }
+  // const temp = response?.current?.temp_c;
+  // if (temp !== undefined) {
+  //   console.log(`The temperature is ${temp}°C`);
+  // } else {
+  // console.error('Temperature data is unavailable.');
+  // }
 
   res.status(200).json({
     client_ip: ip,
