@@ -1,9 +1,22 @@
 const geoip = require('geoip-lite');
 const catchAsync = require('./catchAsync');
+const requestIp = require('request-ip');
+
+exports.getIp = (req, res) => {
+  return res.json({ message: 'hello world' });
+};
 
 exports.getData = catchAsync(async (req, res, next) => {
-  const ip = req.socket.remoteAddress || req.ip;
+  const ip =
+    req.headers['cf-connecting-ip'] ||
+    req.headers['x-real-ip'] ||
+    req.headers['x-forwarded-for'] ||
+    req.socket.remoteAddress ||
+    '';
   console.log(ip);
+
+  // const ip = req.socket.remoteAddress || req.ip;
+  // console.log(ip);
   // const forwardedIpsStr = req.header('X-FORWARDED-FOR');
   // console.log({ forwardedIpsStr });
   // let ip = '';
@@ -12,7 +25,8 @@ exports.getData = catchAsync(async (req, res, next) => {
   //   ip = forwardedIps = forwardedIpsStr.split(',')[0];
   // }
   // const ip = req.ip;
-  // const ip = '207.97.227.239';
+  // const ip = '102.91.53.10';
+  // const ip = '207.97.22.23';
   console.log({ ip });
   const geo = geoip.lookup(ip);
   console.log(geo);
