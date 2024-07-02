@@ -47,6 +47,6 @@ exports.getData = catchAsync(async (req, res, next) => {
   res.status(200).json({
     client_ip: ip,
     location: geo.city,
-    greeting: `hello, ${name}!, the temperature is ${response.current.temp_c} degree celcius in new york`,
+    // greeting: `hello, ${name}!, the temperature is ${response.current.temp_c} degree celcius in new york`,
   });
 });
