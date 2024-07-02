@@ -7,13 +7,13 @@ exports.getIp = (req, res) => {
 };
 
 exports.getData = catchAsync(async (req, res, next) => {
-  const ip =
-    req.headers['cf-connecting-ip'] ||
-    req.headers['x-real-ip'] ||
-    req.headers['x-forwarded-for'] ||
-    req.socket.remoteAddress ||
-    '';
-  console.log(ip);
+  // const ip =
+  //   req.headers['cf-connecting-ip'] ||
+  //   req.headers['x-real-ip'] ||
+  //   req.headers['x-forwarded-for'] ||
+  //   req.socket.remoteAddress ||
+  //   '';
+  // console.log(ip);
 
   // const ip = req.socket.remoteAddress || req.ip;
   // console.log(ip);
@@ -26,7 +26,7 @@ exports.getData = catchAsync(async (req, res, next) => {
   // }
   // const ip = req.ip;
   // const ip = '102.91.53.10';
-  // const ip = '207.97.22.23';
+  const ip = '207.97.22.23';
   console.log({ ip });
   const geo = geoip.lookup(ip);
   console.log(geo);
@@ -42,11 +42,13 @@ exports.getData = catchAsync(async (req, res, next) => {
   //   `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_KEY}`
   // );
   const response = await weather.json();
-  console.log(response);
+  console.log('response', response.current.temp_c);
+  const temp = response.current.temp_c;
+  console.log(temp);
 
   res.status(200).json({
     client_ip: ip,
     location: geo.city,
-    // greeting: `hello, ${name}!, the temperature is ${response.current.temp_c} degree celcius in new york`,
+    greeting: `hello, ${name}!, the temperature is ${temp} degree celcius in new york`,
   });
 });
