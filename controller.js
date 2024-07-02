@@ -49,7 +49,6 @@ exports.getData = catchAsync(async (req, res, next) => {
   } else {
     console.error('Temperature data is unavailable.');
   }
-  console.log(temp);
 
   res.status(200).json({
     client_ip: ip,
