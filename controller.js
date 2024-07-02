@@ -2,8 +2,8 @@ const geoip = require('geoip-lite');
 const catchAsync = require('./catchAsync');
 
 exports.getData = catchAsync(async (req, res, next) => {
-  // const ip = 'req.ip';
-  const ip = '207.97.227.239';
+  const ip = 'req.ip';
+  // const ip = '207.97.227.239';
 
   const geo = geoip.lookup(ip);
   const name = req.query.visitor_name;
