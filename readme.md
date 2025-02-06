@@ -1,3 +1,3 @@
 # HNG stage 1 project
 
-built using modern technologies: javascript, nodejs and express
+built using modern technologies: javascript, nodejs and express and more
